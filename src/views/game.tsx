@@ -64,10 +64,6 @@ const Game: FC<{ startAction: StartAction; name: string; roomId?: string }> = ({
     }
   }, [lastMessage]);
 
-  useEffect(() => {
-    console.log(currentQuestion);
-  }, [currentQuestion]);
-
   if (room) {
     return (
       <motion.div
@@ -77,7 +73,14 @@ const Game: FC<{ startAction: StartAction; name: string; roomId?: string }> = ({
         transition={{ duration: 0.5 }}
       >
         <div className="flex flex-col flex-0 justify-center items-center pt-20 gap-4">
-          <p className="text-4xl font-bold">{stateName}</p>
+          <div className="">
+            <p className="text-4xl font-bold text-center">
+              {stateName} <br />{" "}
+              <span className="text-xl font-normal">
+                {room.players.find((p) => p.name == stateName)?.score} klunkar
+              </span>
+            </p>
+          </div>
           {currentQuestion && <Question question={currentQuestion} />}
           <div className="flex flex-row gap-12">
             {voteButton("1", 1, sendMessage)}
