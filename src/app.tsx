@@ -37,7 +37,7 @@ const App: FC<{}> = () => {
     >
       <Head />
       <div className="flex flex-col flex-0 justify-center items-center pt-20">
-        <p className="font-novaMono text-8xl font-bold">SMÄLTA IN</p>
+        <p className="font-novaMono text-8xl font-bold text-center">SMÄLTA IN</p>
         <Game startAction={StartAction.NEW_GAME} name={'Pontus'} />
       </div>
     </motion.div>

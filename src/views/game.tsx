@@ -15,7 +15,7 @@ import { SERVER_URL } from "../utils/constants";
 
 const voteButton = (text: string, value: number, sendMessage: SendMessage) => (
   <button
-    className="bg-primary text-secondary w-28 h-8 rounded-xl hover:bg-primaryLight hover:text-secondaryLight transition-all"
+    className="bg-primary text-secondary w-28 h-8 rounded-xl hover:w-32 hover:bg-primaryLight hover:text-secondaryLight transition-all"
     onClick={() => {
       sendMessage(JSON.stringify({ action: "Vote", value: value }));
     }}
@@ -99,8 +99,8 @@ const Game: FC<{ startAction: StartAction; name: string; roomId?: string }> = ({
       transition={{ duration: 0.5 }}
     >
       <div className="flex flex-col flex-0 justify-center items-center pt-20">
-        <p className="text-4xl font-bold">
-          SOMETHING WENT WRONG, INVALID ROOM!
+        <p className="text-4xl font-bold text-center">
+          SOMETHING WENT WRONG, COULD NOT FIND ROOM!
         </p>
       </div>
     </motion.div>
