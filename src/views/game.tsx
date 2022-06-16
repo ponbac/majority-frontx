@@ -81,6 +81,7 @@ const Game = (props: GameProps) => {
 
   useEffect(() => {
     if (lastMessage !== null) {
+      //console.log(lastMessage.data);
       const gameState: Room = JSON.parse(lastMessage.data);
       if (!(gameState.scene == 0 && room?.scene == 3)) {
         dispatch(newGameState(gameState));

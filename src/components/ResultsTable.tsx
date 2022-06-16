@@ -10,7 +10,7 @@ const ResultsTable = (props: ResultsTableProps) => {
       <p className="text-center font-bold text-xl">Tavlan:</p>
       <ul className="text-center">
         {room.players.map((player) => (
-          <p className="text-lg">
+          <p className="text-lg" key={player.name}>
             {player.name} - {player.score} klunkar
           </p>
         ))}

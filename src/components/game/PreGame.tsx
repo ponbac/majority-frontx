@@ -15,9 +15,11 @@ const PreGame = (props: PreGameProps) => {
       </p>
       <p className="font-bold">Väntar på att spelet ska startas...</p>
       <p className="font-bold text-xl mt-4">Spelare:</p>
-      {room.players.map((player) => (<p className="font-bold text-lg italic">
-        {player.name}
-      </p>))}
+      {room.players.map((player) => (
+        <p className="font-bold text-lg italic" key={player.name}>
+          {player.name}
+        </p>
+      ))}
       {isLeader && (
         <button
           className="mt-4 bg-primary text-secondary p-2 rounded-xl font-bold w-32 hover:w-36 hover:bg-primaryLight hover:text-secondaryLight transition-all"
