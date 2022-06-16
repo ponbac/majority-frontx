@@ -1,4 +1,5 @@
 import { SendMessage } from "react-use-websocket";
+import ResultsTable from "../ResultsTable";
 
 type VoteButtonsProps = {
   choices: string[];
@@ -35,7 +36,7 @@ const Question = (props: QuestionProps) => {
 
   return (
     <div className="flex flex-col items-center justify-center gap-2 mt-4">
-      <p className="text-2xl">{question.description}</p>
+      <p className="text-2xl text-center">{question.description}</p>
       <div className="flex flex-row gap-12">
         <VoteButtons choices={question.choices} sendMessage={sendMessage} />
       </div>
@@ -60,6 +61,7 @@ const QuestionScene = (props: QuestionSceneProps) => {
         </p>
       </div>
       <Question question={question} sendMessage={sendMessage} />
+      <ResultsTable className="pt-8" room={room} />
     </>
   );
 };
