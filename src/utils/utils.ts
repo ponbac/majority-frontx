@@ -30,3 +30,16 @@ export function useWindowDimensions() {
 
   return windowDimensions;
 }
+
+export const hasAnswered = (playerName: string, question: Question | undefined) => {
+  if (!question) {
+    return false;
+  }
+
+  const allAnswers = question?.group_one.concat(question?.group_two);
+
+  if (allAnswers) {
+    return allAnswers.some((p) => p.name === playerName);
+  }
+  return false;
+};

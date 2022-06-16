@@ -1,18 +1,26 @@
+import { useState } from "react";
 import { SendMessage } from "react-use-websocket";
+import { selectName } from "../../features/auth/gameSlice";
+import { useAppSelector } from "../../features/store";
+import { hasAnswered } from "../../utils/utils";
 import ResultsTable from "../ResultsTable";
 
 type VoteButtonsProps = {
-  choices: string[];
+  question: Question;
   sendMessage: SendMessage;
 };
 const VoteButtons = (props: VoteButtonsProps) => {
-  const { choices, sendMessage } = props;
+  //const [hasAnswered, setHasAnswered] = useState(false);
+  const name = useAppSelector(selectName);
+  const { question, sendMessage } = props;
 
   const Button = (props: { text: string; value: number }) => (
     <button
-      className="font-bold bg-primary text-secondary w-28 h-8 rounded-xl hover:w-32 hover:bg-primaryLight hover:text-secondaryLight transition-all"
+      className="font-bold bg-primary disabled:bg-gray-500 text-secondary disabled:text-white w-28 h-8 rounded-xl hover:w-32 hover:bg-primaryLight hover:text-secondaryLight transition-all"
+      disabled={hasAnswered(name ?? "", question)}
       onClick={() => {
         sendMessage(JSON.stringify({ action: "Vote", value: props.value }));
+        //setHasAnswered(true);
       }}
     >
       {props.text}
@@ -21,8 +29,8 @@ const VoteButtons = (props: VoteButtonsProps) => {
 
   return (
     <>
-      <Button text={choices[0]} value={1} />
-      <Button text={choices[1]} value={2} />
+      <Button text={question.choices[0]} value={1} />
+      <Button text={question.choices[1]} value={2} />
     </>
   );
 };
@@ -38,7 +46,7 @@ const Question = (props: QuestionProps) => {
     <div className="flex flex-col items-center justify-center gap-2 mt-4">
       <p className="text-2xl text-center">{question.description}</p>
       <div className="flex flex-row gap-12">
-        <VoteButtons choices={question.choices} sendMessage={sendMessage} />
+        <VoteButtons question={question} sendMessage={sendMessage} />
       </div>
     </div>
   );

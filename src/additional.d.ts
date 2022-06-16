@@ -16,6 +16,6 @@ type Question = {
     description: string;
     choices: string[];
     reward: number;
-    groupOne: Player[];
-    groupTwo: Player[];
+    group_one: Player[];
+    group_two: Player[];
 }

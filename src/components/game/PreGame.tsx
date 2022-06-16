@@ -22,7 +22,8 @@ const PreGame = (props: PreGameProps) => {
       ))}
       {isLeader && (
         <button
-          className="mt-4 bg-primary text-secondary p-2 rounded-xl font-bold w-32 hover:w-36 hover:bg-primaryLight hover:text-secondaryLight transition-all"
+          className="mt-4 bg-primary disabled:bg-gray-500 disabled:text-white text-secondary p-2 rounded-xl font-bold w-32 hover:w-36 hover:bg-primaryLight hover:text-secondaryLight transition-all"
+          disabled={room.players.length < 2}
           onClick={() => {
             sendMessage(JSON.stringify({ action: "Start" }));
           }}
