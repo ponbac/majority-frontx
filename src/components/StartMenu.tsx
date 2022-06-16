@@ -72,7 +72,7 @@ const StartMenu = (props: StartMenuProps) => {
           placeholder="Rumskod"
         />
       </div>
-      <div className="pt-2 space-x-3">
+      <div className="pt-4 space-x-3">
         <button
           onClick={() => {
             setStartAction(StartAction.NEW_GAME);
