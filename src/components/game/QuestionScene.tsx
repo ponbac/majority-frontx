@@ -69,7 +69,7 @@ const QuestionScene = (props: QuestionSceneProps) => {
         </p>
       </div>
       <Question question={question} sendMessage={sendMessage} />
-      <ResultsTable className="pt-8" room={room} />
+      <ResultsTable className="pt-8" room={room} whoVoted={true} />
     </>
   );
 };

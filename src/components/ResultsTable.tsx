@@ -4,10 +4,11 @@ import { hasAnswered } from "../utils/utils";
 
 type ResultsTableProps = {
   room: Room;
+  whoVoted?: boolean;
   className?: string;
 };
 const ResultsTable = (props: ResultsTableProps) => {
-  const { room, className } = props;
+  const { room, whoVoted = false, className } = props;
   const question = useAppSelector(selectCurrentQuestion);
   const sortedPlayers = [...room.players].sort((a, b) => b.score - a.score);
 
@@ -16,16 +17,18 @@ const ResultsTable = (props: ResultsTableProps) => {
       <p className="text-center font-bold text-xl">Tavlan:</p>
       <ul className="text-center">
         {sortedPlayers.map((player) => {
-          console.log(question?.group_one);
-          if (hasAnswered(player.name, question)) {
+          if (whoVoted && hasAnswered(player.name, question)) {
             return (
-              <p className="text-lg text-green-700 font-bold" key={player.name}>
+              <p
+                className="text-lg text-gray-400 font-bold italic"
+                key={player.name}
+              >
                 {player.name} - {player.score} klunkar
               </p>
             );
           }
           return (
-            <p className="text-lg" key={player.name}>
+            <p className="text-lg font-bold" key={player.name}>
               {player.name} - {player.score} klunkar
             </p>
           );

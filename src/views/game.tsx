@@ -65,7 +65,9 @@ const Game = (props: GameProps) => {
           );
         }
       case 2:
-        return <ResultScene room={room} />;
+        if (currentQuestion) {
+          return <ResultScene question={currentQuestion} />;
+        }
       case 3:
         return <PostGame room={room} />;
       default:
