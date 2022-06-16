@@ -1,16 +1,15 @@
-import { motion } from "framer-motion";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { Helmet } from "react-helmet";
-import useWebSocket from "react-use-websocket";
-import { newGameState } from "./features/auth/gameSlice";
-import { useAppDispatch } from "./features/store";
-import { SERVER_URL } from "./utils/constants";
+import FadeInDiv from "./components/FadeInDiv";
+import StartMenu from "./components/StartMenu";
+import { selectInGame } from "./features/auth/gameSlice";
+import { useAppSelector } from "./features/store";
 import Game, { StartAction } from "./views/game";
 
-const Head: FC<{}> = () => {
+const Head = () => {
   return (
     <Helmet>
-      <title>Backman - [Smälta in]</title>
+      <title>[Smälta in]</title>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link
         rel="preconnect"
@@ -26,21 +25,35 @@ const Head: FC<{}> = () => {
 };
 
 const App: FC<{}> = () => {
-
+  const inGame = useAppSelector(selectInGame);
+  const [startAction, setStartAction] = useState<StartAction>();
+  const [name, setName] = useState<string>();
+  const [roomId, setRoomId] = useState<string>();
 
   return (
-    <motion.div
-      className="min-h-screen"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.0 }}
-    >
+    <FadeInDiv className="min-h-screen">
       <Head />
       <div className="flex flex-col flex-0 justify-center items-center pt-20">
-        <p className="font-novaMono text-8xl font-bold text-center">SMÄLTA IN</p>
-        <Game startAction={StartAction.NEW_GAME} name={'Pontus'} />
+        <p className="font-novaMono text-8xl font-bold text-center">
+          SMÄLTA IN
+        </p>
+        {!inGame && (
+          <StartMenu
+            setStartAction={setStartAction}
+            name={name ?? ""}
+            setName={setName}
+            roomId={roomId ?? ""}
+            setRoomId={setRoomId}
+          />
+        )}
+        {inGame && startAction == StartAction.NEW_GAME && name && (
+          <Game startAction={startAction} name={name} />
+        )}
+        {inGame && startAction == StartAction.JOIN_GAME && name && roomId && (
+          <Game startAction={startAction} name={name} roomId={roomId} />
+        )}
       </div>
-    </motion.div>
+    </FadeInDiv>
   );
 };
 

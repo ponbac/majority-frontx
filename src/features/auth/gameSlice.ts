@@ -1,12 +1,15 @@
 import { AnyAction, createSlice, ThunkAction } from "@reduxjs/toolkit";
 import { AppState, AppThunk } from "../store";
 
-const initialGameState: { inGame: boolean; name: string | null; room: Room | null } =
-  {
-    inGame: false,
-    name: null,
-    room: null,
-  };
+const initialGameState: {
+  inGame: boolean;
+  name: string | null;
+  room: Room | null;
+} = {
+  inGame: false,
+  name: null,
+  room: null,
+};
 
 export const gameSlice = createSlice({
   name: "game",
@@ -21,20 +24,31 @@ export const gameSlice = createSlice({
         room: action.payload,
       };
     },
+    startGame(state) {
+      return {
+        ...state,
+        inGame: true,
+      };
+    },
+    exitGame(state) {
+      return initialGameState;
+    },
     setName(state, action) {
       return {
         ...state,
         name: action.payload,
       };
-    }
+    },
   },
 
   extraReducers: {},
 });
 
 export default gameSlice.reducer;
-export const { newGameState, setName } = gameSlice.actions;
+export const { newGameState, startGame, exitGame, setName } = gameSlice.actions;
 
 export const selectRoom = (state: AppState) => state.game.room;
+export const selectInGame = (state: AppState) => state.game.inGame;
 export const selectName = (state: AppState) => state.game.name;
-export const selectCurrentQuestion = (state: AppState) => state.game.room?.questions[state.game.room.current_question ?? 0];
+export const selectCurrentQuestion = (state: AppState) =>
+  state.game.room?.questions[state.game.room.current_question ?? 0];

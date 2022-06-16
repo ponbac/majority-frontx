@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
-import { castImmutable } from "immer";
-import { FC, useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import { useEffect, useState } from "react";
 import useWebSocket, { SendMessage } from "react-use-websocket";
+import FadeInDiv from "../components/FadeInDiv";
+import PostGame from "../components/game/PostGame";
+import PreGame from "../components/game/PreGame";
+import QuestionScene from "../components/game/QuestionScene";
+import ResultScene from "../components/game/ResultScene";
 import {
   newGameState,
   selectCurrentQuestion,
@@ -13,30 +16,18 @@ import {
 import { useAppDispatch, useAppSelector } from "../features/store";
 import { SERVER_URL } from "../utils/constants";
 
-const voteButton = (text: string, value: number, sendMessage: SendMessage) => (
-  <button
-    className="bg-primary text-secondary w-28 h-8 rounded-xl hover:w-32 hover:bg-primaryLight hover:text-secondaryLight transition-all"
-    onClick={() => {
-      sendMessage(JSON.stringify({ action: "Vote", value: value }));
-    }}
-  >
-    {text}
-  </button>
-);
-
-const Question: FC<{ question: Question }> = ({ question }) => {
-  return <p className="text-xl">{question.description}</p>;
-};
-
 export enum StartAction {
   JOIN_GAME,
   NEW_GAME,
 }
-const Game: FC<{ startAction: StartAction; name: string; roomId?: string }> = ({
-  startAction,
-  name,
-  roomId,
-}) => {
+type GameProps = {
+  startAction: StartAction;
+  name: string;
+  roomId?: string;
+};
+const Game = (props: GameProps) => {
+  const { startAction, name, roomId } = props;
+
   const startQuery =
     startAction === StartAction.JOIN_GAME
       ? `/join?room=${roomId}&name=${name}`
@@ -44,11 +35,43 @@ const Game: FC<{ startAction: StartAction; name: string; roomId?: string }> = ({
   const { sendMessage, lastMessage, readyState } = useWebSocket(
     `${SERVER_URL}${startQuery}`
   );
+  const [messageHistory, setMessageHistory] = useState<string[]>([]);
+
   const room = useAppSelector(selectRoom);
   const currentQuestion = useAppSelector(selectCurrentQuestion);
   const stateName = useAppSelector(selectName);
 
   const dispatch = useAppDispatch();
+
+  const SceneHandler = () => {
+    switch (room?.scene) {
+      case 0:
+        return (
+          <PreGame
+            isLeader={startAction === StartAction.NEW_GAME ? true : false}
+            room={room}
+            sendMessage={sendMessage}
+          />
+        );
+      case 1:
+        if (currentQuestion && stateName) {
+          return (
+            <QuestionScene
+              question={currentQuestion}
+              room={room}
+              name={stateName}
+              sendMessage={sendMessage}
+            />
+          );
+        }
+      case 2:
+        return <ResultScene room={room} />;
+      case 3:
+        return <PostGame room={room} />;
+      default:
+        return <>Something went wrong!</>;
+    }
+  };
 
   useEffect(() => {
     if (!stateName) {
@@ -59,35 +82,21 @@ const Game: FC<{ startAction: StartAction; name: string; roomId?: string }> = ({
   useEffect(() => {
     if (lastMessage !== null) {
       const gameState: Room = JSON.parse(lastMessage.data);
-      dispatch(newGameState(gameState));
+      if (!(gameState.scene == 0 && room?.scene == 3)) {
+        dispatch(newGameState(gameState));
+      }
+      setMessageHistory([...messageHistory, lastMessage.data]);
       //console.log(JSON.parse(lastMessage.data));
     }
   }, [lastMessage]);
 
   if (room) {
     return (
-      <motion.div
-        className="min-h-screen font-novaMono"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="flex flex-col flex-0 justify-center items-center pt-20 gap-4">
-          <div className="">
-            <p className="text-4xl font-bold text-center">
-              {stateName} <br />{" "}
-              <span className="text-xl font-normal">
-                {room.players.find((p) => p.name == stateName)?.score} klunkar
-              </span>
-            </p>
-          </div>
-          {currentQuestion && <Question question={currentQuestion} />}
-          <div className="flex flex-row gap-12">
-            {voteButton("1", 1, sendMessage)}
-            {voteButton("2", 2, sendMessage)}
-          </div>
+      <FadeInDiv className="min-h-screen font-novaMono" duration={0.5}>
+        <div className="flex flex-col flex-0 justify-center items-center pt-20">
+          <SceneHandler />
         </div>
-      </motion.div>
+      </FadeInDiv>
     );
   }
 
@@ -100,7 +109,7 @@ const Game: FC<{ startAction: StartAction; name: string; roomId?: string }> = ({
     >
       <div className="flex flex-col flex-0 justify-center items-center pt-20">
         <p className="text-4xl font-bold text-center">
-          SOMETHING WENT WRONG, COULD NOT FIND ROOM!
+          NÅGOT GICK FEL, KAN INTE HITTA RUMMET!
         </p>
       </div>
     </motion.div>
