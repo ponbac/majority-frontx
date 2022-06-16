@@ -71,7 +71,7 @@ const Game = (props: GameProps) => {
       case 3:
         return <PostGame room={room} />;
       default:
-        return <>Something went wrong!</>;
+        return <>SceneHandler, ogiltig scen!</>;
     }
   };
 
@@ -104,18 +104,14 @@ const Game = (props: GameProps) => {
   }
 
   return (
-    <motion.div
-      className="min-h-screen font-novaMono"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="flex flex-col flex-0 justify-center items-center pt-20">
-        <p className="text-4xl font-bold text-center">
-          NÅGOT GICK FEL, KAN INTE HITTA RUMMET!
-        </p>
+    <div className="mt-24 flex justify-center items-center">
+      <div className="loading-indicator">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

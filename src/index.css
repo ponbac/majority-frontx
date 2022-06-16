@@ -15,7 +15,7 @@
     width: 13px;
     height: 13px;
     border-radius: 50%;
-    background: #53479b;
+    background: #FFCC8F;
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
   }
   .loading-indicator div:nth-child(1) {
