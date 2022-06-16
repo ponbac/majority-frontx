@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import FadeInDiv from "./components/FadeInDiv";
 import StartMenu from "./components/StartMenu";
@@ -29,6 +29,11 @@ const App: FC<{}> = () => {
   const [startAction, setStartAction] = useState<StartAction>();
   const [name, setName] = useState<string>();
   const [roomId, setRoomId] = useState<string>();
+
+  // Ping to wake up server
+  useEffect(() => {
+    fetch("https://mysterious-ridge-24681.herokuapp.com/");
+  }, []);
 
   return (
     <FadeInDiv className="min-h-screen">
