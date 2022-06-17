@@ -15,7 +15,7 @@ const VoteButtons = (props: VoteButtonsProps) => {
 
   const Button = (props: { text: string; value: number }) => (
     <button
-      className="font-bold bg-primary disabled:bg-gray-500 text-secondary disabled:text-white w-36 h-8 rounded-xl hover:w-40 hover:bg-primaryLight hover:text-secondaryLight transition-all"
+      className="font-bold bg-primary disabled:bg-gray-500 text-secondary disabled:text-white w-36 p-2 rounded-xl hover:w-40 hover:bg-primaryLight hover:text-secondaryLight transition-all"
       disabled={hasAnswered(name ?? "", question)}
       onClick={() => {
         sendMessage(JSON.stringify({ action: "Vote", value: props.value }));
@@ -42,7 +42,7 @@ const Question = (props: QuestionProps) => {
 
   return (
     <div className="flex flex-col items-center justify-center gap-2 mt-4">
-      <p className="text-2xl text-center px-2">{question.description}</p>
+      <p className="text-2xl text-center px-4">{question.description}</p>
       <div className="flex flex-row gap-12">
         <VoteButtons question={question} sendMessage={sendMessage} />
       </div>
