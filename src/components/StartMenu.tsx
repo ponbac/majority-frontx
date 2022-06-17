@@ -4,25 +4,37 @@ import { useAppDispatch } from "../features/store";
 import { StartAction } from "../views/game";
 
 type StartMenuProps = {
+  startAction: StartAction | undefined;
   setStartAction: React.Dispatch<React.SetStateAction<StartAction | undefined>>;
   name: string;
   setName: React.Dispatch<React.SetStateAction<string | undefined>>;
   roomId: string;
   setRoomId: React.Dispatch<React.SetStateAction<string | undefined>>;
+  nQuestions: string;
+  setNQuestions: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 const StartMenu = (props: StartMenuProps) => {
-  const { setStartAction, setName, name, setRoomId, roomId } = props;
+  const {
+    startAction,
+    setStartAction,
+    setName,
+    name,
+    setRoomId,
+    roomId,
+    nQuestions,
+    setNQuestions,
+  } = props;
   const [displayNameSelect, setDisplayNameSelect] = useState(false);
   const dispatch = useAppDispatch();
 
   if (displayNameSelect) {
     return (
       <div className="pt-16 flex flex-col justify-center items-center font-novaMono">
-        <div className="flex border-2 border-primary rounded bg-primary text-black w-56">
+        <div className="flex flex-col gap-2 items-center">
           <input
             autoFocus
             type="text"
-            className="px-2 py-2 w-full outline-none text-secondary font-bold"
+            className="px-2 py-2 w-full outline-none text-secondary font-bold border-2 border-primary rounded"
             value={name}
             onChange={(event) => {
               if (event.currentTarget.value.length <= 16) {
@@ -38,6 +50,26 @@ const StartMenu = (props: StartMenuProps) => {
             }}
             placeholder="Namn"
           />
+          {startAction === StartAction.NEW_GAME && (
+            <input
+              autoFocus
+              type="number"
+              min={1}
+              className="px-2 py-2 mb-2 w-24 outline-none text-secondary font-bold border-2 border-primary rounded"
+              value={nQuestions}
+              onChange={(event) => {
+                setNQuestions(event.currentTarget.value);
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  if (name.length > 0) {
+                    dispatch(startGame());
+                  }
+                }
+              }}
+              placeholder="Frågor"
+            />
+          )}
         </div>
         <div className="pt-2 space-x-3">
           <button
@@ -46,7 +78,7 @@ const StartMenu = (props: StartMenuProps) => {
                 dispatch(startGame());
               }
             }}
-            className="bg-primary text-secondary p-2 rounded-xl font-bold w-28 hover:w-32 hover:bg-primaryLight hover:text-secondaryLight transition-all"
+            className="bg-primary text-secondary p-2 rounded-xl font-bold w-32 hover:w-36 hover:bg-primaryLight hover:text-secondaryLight transition-all"
           >
             Starta!
           </button>

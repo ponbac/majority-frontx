@@ -24,14 +24,15 @@ type GameProps = {
   startAction: StartAction;
   name: string;
   roomId?: string;
+  nQuestions?: string;
 };
 const Game = (props: GameProps) => {
-  const { startAction, name, roomId } = props;
+  const { startAction, name, roomId, nQuestions } = props;
 
   const startQuery =
     startAction === StartAction.JOIN_GAME
       ? `/join?room=${roomId}&name=${name}`
-      : `/new?name=${name}`;
+      : `/new?name=${name}&questions=${nQuestions}`;
   const { sendMessage, lastMessage, readyState } = useWebSocket(
     `${SERVER_URL}${startQuery}`
   );

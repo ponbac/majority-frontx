@@ -29,6 +29,7 @@ const App: FC<{}> = () => {
   const [startAction, setStartAction] = useState<StartAction>();
   const [name, setName] = useState<string>();
   const [roomId, setRoomId] = useState<string>();
+  const [nQuestions, setNQuestions] = useState<string>();
 
   // Ping to wake up server
   useEffect(() => {
@@ -44,15 +45,18 @@ const App: FC<{}> = () => {
         </p>
         {!inGame && (
           <StartMenu
+            startAction={startAction}
             setStartAction={setStartAction}
             name={name ?? ""}
             setName={setName}
             roomId={roomId ?? ""}
             setRoomId={setRoomId}
+            nQuestions={nQuestions ?? ""}
+            setNQuestions={setNQuestions}
           />
         )}
         {inGame && startAction == StartAction.NEW_GAME && name && (
-          <Game startAction={startAction} name={name} />
+          <Game startAction={startAction} name={name} nQuestions={nQuestions} />
         )}
         {inGame && startAction == StartAction.JOIN_GAME && name && roomId && (
           <Game startAction={startAction} name={name} roomId={roomId} />
