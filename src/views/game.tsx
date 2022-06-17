@@ -96,7 +96,7 @@ const Game = (props: GameProps) => {
 
   if (room) {
     return (
-      <FadeInDiv className="min-h-screen font-novaMono" duration={0.5}>
+      <FadeInDiv className=" font-novaMono" duration={0.5}>
         <div className="flex flex-col flex-0 justify-center items-center pt-20">
           <SceneHandler />
         </div>
@@ -106,7 +106,7 @@ const Game = (props: GameProps) => {
 
   if (readyState === ReadyState.CLOSED) {
     return (
-      <FadeInDiv className="min-h-screen font-novaMono" duration={0.5}>
+      <FadeInDiv className=" font-novaMono" duration={0.5}>
         <div className="flex flex-col flex-0 justify-center items-center pt-20">
           <p className="font-bold text-3xl px-2 text-center">
             Hittar inte rummet [{roomId}], eller så är ditt namn redan taget!
