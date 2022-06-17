@@ -20,12 +20,20 @@ const StartMenu = (props: StartMenuProps) => {
       <div className="pt-16 flex flex-col justify-center items-center font-novaMono">
         <div className="flex border-2 border-primary rounded bg-primary text-black w-56">
           <input
+            autoFocus
             type="text"
             className="px-2 py-2 w-full outline-none text-secondary font-bold"
             value={name}
             onChange={(event) => {
               if (event.currentTarget.value.length <= 16) {
                 setName(event.currentTarget.value);
+              }
+            }}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                if (name.length > 0) {
+                  dispatch(startGame());
+                }
               }
             }}
             placeholder="Namn"
@@ -61,12 +69,21 @@ const StartMenu = (props: StartMenuProps) => {
           </svg>
         </button>
         <input
+          autoFocus
           type="text"
           className="px-4 py-2 w-full outline-none text-secondary font-bold"
           value={roomId}
           onChange={(event) => {
             if (event.currentTarget.value.length <= 4) {
               setRoomId(event.currentTarget.value.toUpperCase());
+            }
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              if (roomId.length == 4) {
+                setStartAction(StartAction.JOIN_GAME);
+                setDisplayNameSelect(true);
+              }
             }
           }}
           placeholder="Rumskod"
