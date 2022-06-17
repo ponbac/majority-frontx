@@ -73,12 +73,13 @@ const StartMenu = (props: StartMenuProps) => {
         </div>
         <div className="pt-2 space-x-3">
           <button
+            disabled={name.length === 0}
             onClick={() => {
               if (name.length > 0) {
                 dispatch(startGame());
               }
             }}
-            className="bg-primary text-secondary p-2 rounded-xl font-bold w-32 hover:w-36 hover:bg-primaryLight hover:text-secondaryLight transition-all"
+            className="bg-primary text-secondary p-2 rounded-xl font-bold w-32 hover:w-36 hover:bg-primaryLight hover:text-secondaryLight disabled:bg-gray-500 disabled:text-white disabled:w-32 transition-all"
           >
             Starta!
           </button>
@@ -132,13 +133,14 @@ const StartMenu = (props: StartMenuProps) => {
           Skapa nytt rum
         </button>
         <button
+          disabled={roomId.length !== 4}
           onClick={() => {
             if (roomId.length == 4) {
               setStartAction(StartAction.JOIN_GAME);
               setDisplayNameSelect(true);
             }
           }}
-          className="bg-primary text-secondary p-2 rounded-xl font-bold w-40 hover:w-44 hover:bg-primaryLight hover:text-secondaryLight transition-all"
+          className="bg-primary text-secondary p-2 rounded-xl font-bold w-40 hover:w-44 hover:bg-primaryLight hover:text-secondaryLight disabled:bg-gray-500 disabled:text-white disabled:w-40 transition-all"
         >
           Anslut till rum
         </button>
