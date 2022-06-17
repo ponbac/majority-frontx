@@ -7,6 +7,9 @@ type PreGameProps = {
 };
 const PreGame = (props: PreGameProps) => {
   const { isLeader, room, sendMessage } = props;
+  const sortedPlayers = [...room.players].sort((a, b) => {
+    return a.name.localeCompare(b.name);
+  });
 
   return (
     <>
@@ -15,7 +18,7 @@ const PreGame = (props: PreGameProps) => {
       </p>
       <p className="font-bold">Väntar på att spelet ska startas...</p>
       <p className="font-bold text-xl mt-4">Spelare:</p>
-      {room.players.map((player) => (
+      {sortedPlayers.map((player) => (
         <p className="font-bold text-lg italic" key={player.name}>
           {player.name}
         </p>

@@ -10,7 +10,13 @@ type ResultsTableProps = {
 const ResultsTable = (props: ResultsTableProps) => {
   const { room, whoVoted = false, className } = props;
   const question = useAppSelector(selectCurrentQuestion);
-  const sortedPlayers = [...room.players].sort((a, b) => b.score - a.score);
+  const sortedPlayers = [...room.players].sort((a, b) => {
+    let n = b.score - a.score;
+    if (n === 0) {
+      n = a.name.localeCompare(b.name);
+    }
+    return n;
+  });
 
   return (
     <div className={className}>
