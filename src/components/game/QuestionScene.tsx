@@ -10,7 +10,6 @@ type VoteButtonsProps = {
   sendMessage: SendMessage;
 };
 const VoteButtons = (props: VoteButtonsProps) => {
-  //const [hasAnswered, setHasAnswered] = useState(false);
   const name = useAppSelector(selectName);
   const { question, sendMessage } = props;
 
@@ -20,7 +19,6 @@ const VoteButtons = (props: VoteButtonsProps) => {
       disabled={hasAnswered(name ?? "", question)}
       onClick={() => {
         sendMessage(JSON.stringify({ action: "Vote", value: props.value }));
-        //setHasAnswered(true);
       }}
     >
       {props.text}

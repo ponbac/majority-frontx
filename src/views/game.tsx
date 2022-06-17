@@ -108,8 +108,8 @@ const Game = (props: GameProps) => {
     return (
       <FadeInDiv className="min-h-screen font-novaMono" duration={0.5}>
         <div className="flex flex-col flex-0 justify-center items-center pt-20">
-          <p className="font-bold text-3xl px-2">
-            Hittar inte rummet [{roomId}]!
+          <p className="font-bold text-3xl px-2 text-center">
+            Hittar inte rummet [{roomId}], eller så är ditt namn redan taget!
           </p>
           <button
             className="mt-6 bg-primary text-secondary p-2 rounded-xl font-bold w-36 hover:w-40 hover:bg-primaryLight hover:text-secondaryLight transition-all"
