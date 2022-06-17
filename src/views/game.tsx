@@ -1,6 +1,5 @@
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import useWebSocket, { ReadyState, SendMessage } from "react-use-websocket";
+import useWebSocket, { ReadyState } from "react-use-websocket";
 import FadeInDiv from "../components/FadeInDiv";
 import PostGame from "../components/game/PostGame";
 import PreGame from "../components/game/PreGame";
@@ -44,6 +43,8 @@ const Game = (props: GameProps) => {
 
   const dispatch = useAppDispatch();
 
+  // TODO: Add fade when prevScene != currentScene
+  const [prevScene, setPrevScene] = useState<number>();
   const SceneHandler = () => {
     switch (room?.scene) {
       case 0:
@@ -84,7 +85,7 @@ const Game = (props: GameProps) => {
 
   useEffect(() => {
     if (lastMessage !== null) {
-      //console.log(lastMessage.data);
+      setPrevScene(room?.scene);
       const gameState: Room = JSON.parse(lastMessage.data);
       if (!(gameState.scene == 0 && room?.scene == 3)) {
         dispatch(newGameState(gameState));
@@ -98,7 +99,12 @@ const Game = (props: GameProps) => {
     return (
       <FadeInDiv className=" font-novaMono" duration={0.5}>
         <div className="flex flex-col flex-0 justify-center items-center pt-20">
-          <SceneHandler />
+          {prevScene == room.scene && <SceneHandler />}
+          {prevScene != room.scene && (
+            <FadeInDiv className="flex flex-col flex-0 justify-center items-center">
+              <SceneHandler />
+            </FadeInDiv>
+          )}
         </div>
       </FadeInDiv>
     );

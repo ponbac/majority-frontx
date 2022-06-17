@@ -15,6 +15,7 @@ const FadeInDiv = (props: FadeInDivProps) => {
       key={key}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ duration: duration }}
     >
       {children}
