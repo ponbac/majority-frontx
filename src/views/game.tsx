@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import useWebSocket, { SendMessage } from "react-use-websocket";
+import useWebSocket, { ReadyState, SendMessage } from "react-use-websocket";
 import FadeInDiv from "../components/FadeInDiv";
 import PostGame from "../components/game/PostGame";
 import PreGame from "../components/game/PreGame";
 import QuestionScene from "../components/game/QuestionScene";
 import ResultScene from "../components/game/ResultScene";
 import {
+  exitGame,
   newGameState,
   selectCurrentQuestion,
   selectName,
@@ -98,6 +99,26 @@ const Game = (props: GameProps) => {
       <FadeInDiv className="min-h-screen font-novaMono" duration={0.5}>
         <div className="flex flex-col flex-0 justify-center items-center pt-20">
           <SceneHandler />
+        </div>
+      </FadeInDiv>
+    );
+  }
+
+  if (readyState === ReadyState.CLOSED) {
+    return (
+      <FadeInDiv className="min-h-screen font-novaMono" duration={0.5}>
+        <div className="flex flex-col flex-0 justify-center items-center pt-20">
+          <p className="font-bold text-3xl px-2">
+            Hittar inte rummet [{roomId}]!
+          </p>
+          <button
+            className="mt-6 bg-primary text-secondary p-2 rounded-xl font-bold w-36 hover:w-40 hover:bg-primaryLight hover:text-secondaryLight transition-all"
+            onClick={() => {
+              dispatch(exitGame());
+            }}
+          >
+            Tillbaka!
+          </button>
         </div>
       </FadeInDiv>
     );
