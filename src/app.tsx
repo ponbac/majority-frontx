@@ -39,7 +39,7 @@ const App: FC<{}> = () => {
     <FadeInDiv className="min-h-screen">
       <Head />
       <div className="flex flex-col flex-0 justify-center items-center pt-20">
-        <p className="font-novaMono text-8xl font-bold text-center">
+        <p className="font-novaMono text-8xl font-bold text-center px-2">
           SMÄLTA IN
         </p>
         {!inGame && (

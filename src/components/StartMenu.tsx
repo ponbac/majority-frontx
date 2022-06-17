@@ -17,7 +17,7 @@ const StartMenu = (props: StartMenuProps) => {
 
   if (displayNameSelect) {
     return (
-      <div className="pt-16 flex flex-col justify-center items-center">
+      <div className="pt-16 flex flex-col justify-center items-center font-novaMono">
         <div className="flex border-2 border-primary rounded bg-primary text-black w-56">
           <input
             type="text"
@@ -48,7 +48,7 @@ const StartMenu = (props: StartMenuProps) => {
   }
 
   return (
-    <div className="pt-16 flex flex-col justify-center items-center">
+    <div className="pt-16 flex flex-col justify-center items-center font-novaMono">
       <div className="flex border-2 border-primary rounded bg-primary text-black w-56">
         <button className="flex items-center justify-center px-2 border-r border-gray-300">
           <svg

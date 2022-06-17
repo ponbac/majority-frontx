@@ -44,7 +44,7 @@ const Question = (props: QuestionProps) => {
 
   return (
     <div className="flex flex-col items-center justify-center gap-2 mt-4">
-      <p className="text-2xl text-center">{question.description}</p>
+      <p className="text-2xl text-center px-2">{question.description}</p>
       <div className="flex flex-row gap-12">
         <VoteButtons question={question} sendMessage={sendMessage} />
       </div>
