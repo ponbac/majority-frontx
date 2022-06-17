@@ -907,6 +907,11 @@ minimist@^1.2.6:
   resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.6.tgz"
   integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
+mitt@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/mitt/-/mitt-2.1.0.tgz#f740577c23176c6205b121b2973514eade1b2230"
+  integrity sha512-ILj2TpLiysu2wkBbWjAmww7TkZb65aiQO+DkVdUTBpBXq+MHYiETENkKFMtsJZX1Lf4pe4QOrTSjIfUwN5lRdg==
+
 ms@2.1.2:
   version "2.1.2"
   resolved "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
@@ -1259,6 +1264,13 @@ tailwindcss@^3.1.2:
     postcss-value-parser "^4.2.0"
     quick-lru "^5.1.1"
     resolve "^1.22.0"
+
+tiny-timer@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/tiny-timer/-/tiny-timer-1.6.0.tgz#bae5a112da9f0246b5a8676c86160718680aae68"
+  integrity sha512-2ciJ4w+0EKDRmVihzj8aBxDw2da9L88aTwslhf1Clphwt2NV927N7xH90tqz/M02lziboDkx+IypnnWqzjnv9g==
+  dependencies:
+    mitt "^2.1.0"
 
 to-fast-properties@^2.0.0:
   version "2.0.0"

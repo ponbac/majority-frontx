@@ -93,3 +93,45 @@ html {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+#countdown {
+  position: relative;
+  margin: auto;
+  height: 80px;
+  width: 80px;
+  text-align: center;
+}
+
+#countdown-number {
+  color: #ffcc8f;
+  display: inline-block;
+  line-height: 80px;
+}
+
+#countdown svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+
+#countdown svg circle {
+  stroke-dasharray: 226px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 6px;
+  stroke: #ffcc8f;
+  fill: none;
+  animation: countdown 15s linear infinite forwards;
+}
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 226px;
+  }
+}

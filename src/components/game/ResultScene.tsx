@@ -1,3 +1,38 @@
+import { useEffect } from "react";
+
+const Countdown = () => {
+  useEffect(() => {
+    var countdownNumberEl = document.getElementById("countdown-number");
+    var countdown = 15;
+
+    if (countdownNumberEl) {
+      countdownNumberEl.textContent = countdown.toString();
+    }
+
+    setInterval(function () {
+      countdown = --countdown <= 0 ? 15 : countdown;
+
+      if (countdownNumberEl) {
+        countdownNumberEl.textContent = countdown.toString();
+      }
+      if (countdown == 0) {
+        document.getElementById("countdown")?.remove();
+      }
+    }, 1000);
+  }, []);
+
+  return (
+    <div className="mt-8">
+      <div className="" id="countdown">
+        <div className="font-novaMono font-bold text-2xl" id="countdown-number"></div>
+        <svg>
+          <circle r="36" cx="40" cy="40"></circle>
+        </svg>
+      </div>
+    </div>
+  );
+};
+
 type ResultSceneProps = {
   question: Question;
 };
@@ -39,6 +74,7 @@ const ResultScene = (props: ResultSceneProps) => {
         <p className="mt-5 font-bold text-4xl text-center px-2">
           Alla dricker {question.reward / 2} klunk(ar)!
         </p>
+        <Countdown />
       </>
     );
   }
@@ -79,6 +115,7 @@ const ResultScene = (props: ResultSceneProps) => {
           </p>
         </>
       )}
+      <Countdown />
     </>
   );
 };
