@@ -35,7 +35,6 @@ const Game = (props: GameProps) => {
   const { sendMessage, lastMessage, readyState } = useWebSocket(
     `${SERVER_URL}${startQuery}`
   );
-  const [messageHistory, setMessageHistory] = useState<string[]>([]);
 
   const room = useAppSelector(selectRoom);
   const currentQuestion = useAppSelector(selectCurrentQuestion);
@@ -83,14 +82,19 @@ const Game = (props: GameProps) => {
     }
   }, []);
 
+  const [messageHistory, setMessageHistory] = useState<string>();
   useEffect(() => {
     if (lastMessage !== null) {
       setPrevScene(room?.scene);
-      const gameState: Room = JSON.parse(lastMessage.data);
-      if (!(gameState.scene == 0 && room?.scene == 3)) {
-        dispatch(newGameState(gameState));
+      if (messageHistory !== lastMessage.data) {
+        console.log(`old length: ${messageHistory?.length}`);
+        console.log(`new length: ${lastMessage.data.length}`);
+        const gameState: Room = JSON.parse(lastMessage.data);
+        if (!(gameState.scene == 0 && room?.scene == 3)) {
+          dispatch(newGameState(gameState));
+        }
+        setMessageHistory(lastMessage.data);
       }
-      setMessageHistory([...messageHistory, lastMessage.data]);
       //console.log(JSON.parse(lastMessage.data));
     }
   }, [lastMessage]);
