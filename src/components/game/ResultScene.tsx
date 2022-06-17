@@ -17,6 +17,7 @@ const Countdown = () => {
       }
       if (countdown == 0) {
         document.getElementById("countdown")?.remove();
+        document.getElementById("countdown")?.setAttribute("hidden", "true");
       }
     }, 1000);
   }, []);
