@@ -16,7 +16,7 @@ const VoteButtons = (props: VoteButtonsProps) => {
 
   const Button = (props: { text: string; value: number }) => (
     <button
-      className="font-bold bg-primary disabled:bg-gray-500 text-secondary disabled:text-white w-28 h-8 rounded-xl hover:w-32 hover:bg-primaryLight hover:text-secondaryLight transition-all"
+      className="font-bold bg-primary disabled:bg-gray-500 text-secondary disabled:text-white w-36 h-8 rounded-xl hover:w-40 hover:bg-primaryLight hover:text-secondaryLight transition-all"
       disabled={hasAnswered(name ?? "", question)}
       onClick={() => {
         sendMessage(JSON.stringify({ action: "Vote", value: props.value }));

@@ -35,8 +35,8 @@ const ResultScene = (props: ResultSceneProps) => {
         <p className="font-bold text-xl text-center italic mb-4">
           {question.description}
         </p>
-        <p className="font-bold text-4xl text-center italic">Oavgjort!</p>
-        <p className="mt-5 font-bold text-4xl text-center">
+        <p className="font-bold text-5xl text-center italic">Oavgjort!</p>
+        <p className="mt-5 font-bold text-4xl text-center px-2">
           Alla dricker {question.reward / 2} klunk(ar)!
         </p>
       </>
@@ -48,11 +48,11 @@ const ResultScene = (props: ResultSceneProps) => {
       <p className="font-bold text-xl text-center italic">
         {question.description}
       </p>
-      <p className="font-bold text-4xl text-center mb-4 mt-1">
+      <p className="font-bold text-4xl text-center mb-4 mt-1 text-green-600">
         {losingChoice() == 1 ? question.choices[1] : question.choices[0]}
       </p>
       <p className="font-bold text-2xl text-center">Förlorare:</p>
-      <p className="font-bold text-3xl text-center underline decoration-primary">
+      <p className="font-bold text-3xl text-center underline decoration-red-500 text-red-700">
         {question.choices[losingChoice() - 1]}
       </p>
       {losingPlayers().length > 0 && (
@@ -74,7 +74,7 @@ const ResultScene = (props: ResultSceneProps) => {
       )}
       {losingPlayers().length == 0 && (
         <>
-          <p className="mt-4 font-bold text-4xl text-center">
+          <p className="mt-4 font-bold text-5xl text-center px-2">
             Överens, ingen dricker!
           </p>
         </>
