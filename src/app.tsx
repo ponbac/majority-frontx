@@ -43,7 +43,7 @@ const App: FC<{}> = () => {
       <div className="flex flex-col flex-0 justify-center items-center min-h-screen">
         {!inGame && (
           <>
-            <p className="font-novaMono text-7xl lg:text-8xl font-bold text-center px-2">
+            <p className="absolute top-20 lg:top-28 font-novaMono text-8xl lg:text-8xl font-bold text-center px-2">
               SMÄLTA IN
             </p>
             <StartMenu
