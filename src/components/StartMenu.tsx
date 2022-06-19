@@ -29,7 +29,7 @@ const StartMenu = (props: StartMenuProps) => {
 
   if (displayNameSelect) {
     return (
-      <div className="pt-16 flex flex-col justify-center items-center font-novaMono">
+      <div className="pt-4 flex flex-col justify-center items-center font-novaMono">
         <div className="flex flex-col gap-2 items-center">
           <input
             autoFocus
@@ -89,7 +89,7 @@ const StartMenu = (props: StartMenuProps) => {
   }
 
   return (
-    <div className="pt-16 flex flex-col justify-center items-center font-novaMono">
+    <div className="pt-2 flex flex-col justify-center items-center font-novaMono">
       <div className="flex border-2 border-primary rounded bg-primary text-black w-56">
         <button className="flex items-center justify-center px-2 border-r border-gray-300">
           <svg
@@ -122,15 +122,15 @@ const StartMenu = (props: StartMenuProps) => {
           placeholder="Rumskod"
         />
       </div>
-      <div className="pt-4 space-x-3">
+      <div className="pt-4 space-x-6">
         <button
           onClick={() => {
             setStartAction(StartAction.NEW_GAME);
             setDisplayNameSelect(true);
           }}
-          className="bg-primary text-secondary p-2 rounded-xl font-bold w-40 hover:w-44 hover:bg-primaryLight hover:text-secondaryLight transition-all"
+          className="text-lg bg-primary text-secondary p-2 rounded-xl font-bold w-40 hover:w-44 hover:bg-primaryLight hover:text-secondaryLight transition-all"
         >
-          Skapa nytt rum
+          Skapa nytt
         </button>
         <button
           disabled={roomId.length !== 4}
@@ -140,9 +140,9 @@ const StartMenu = (props: StartMenuProps) => {
               setDisplayNameSelect(true);
             }
           }}
-          className="bg-primary text-secondary p-2 rounded-xl font-bold w-40 hover:w-44 hover:bg-primaryLight hover:text-secondaryLight disabled:bg-gray-500 disabled:text-white disabled:w-40 transition-all"
+          className="text-lg bg-primary text-secondary p-2 rounded-xl font-bold w-40 hover:w-44 hover:bg-primaryLight hover:text-secondaryLight disabled:bg-gray-500 disabled:text-white disabled:w-40 transition-all"
         >
-          Anslut till rum
+          Anslut
         </button>
       </div>
     </div>

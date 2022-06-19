@@ -4,6 +4,7 @@ import FadeInDiv from "./components/FadeInDiv";
 import StartMenu from "./components/StartMenu";
 import { selectInGame } from "./features/auth/gameSlice";
 import { useAppSelector } from "./features/store";
+import { SERVER_URL } from "./utils/constants";
 import Game, { StartAction } from "./views/game";
 
 const Head = () => {
@@ -33,27 +34,29 @@ const App: FC<{}> = () => {
 
   // Ping to wake up server
   useEffect(() => {
-    fetch("https://mysterious-ridge-24681.herokuapp.com/");
+    fetch(SERVER_URL);
   }, []);
 
   return (
     <FadeInDiv className="min-h-screen">
       <Head />
-      <div className="flex flex-col flex-0 justify-center items-center pt-20">
-        <p className="font-novaMono text-8xl font-bold text-center px-2">
-          SMÄLTA IN
-        </p>
+      <div className="flex flex-col flex-0 justify-center items-center min-h-screen">
         {!inGame && (
-          <StartMenu
-            startAction={startAction}
-            setStartAction={setStartAction}
-            name={name ?? ""}
-            setName={setName}
-            roomId={roomId ?? ""}
-            setRoomId={setRoomId}
-            nQuestions={nQuestions ?? ""}
-            setNQuestions={setNQuestions}
-          />
+          <>
+            <p className="font-novaMono text-7xl lg:text-8xl font-bold text-center px-2">
+              SMÄLTA IN
+            </p>
+            <StartMenu
+              startAction={startAction}
+              setStartAction={setStartAction}
+              name={name ?? ""}
+              setName={setName}
+              roomId={roomId ?? ""}
+              setRoomId={setRoomId}
+              nQuestions={nQuestions ?? ""}
+              setNQuestions={setNQuestions}
+            />
+          </>
         )}
         {inGame && startAction == StartAction.NEW_GAME && name && (
           <Game startAction={startAction} name={name} nQuestions={nQuestions} />

@@ -12,10 +12,10 @@ const PostGame = (props: PostGameProps) => {
   return (
     <div className="text-center">
       <h1 className="font-bold text-4xl px-2">Spelet är slut!</h1>
-      <h1 className=" mt-6 mb-1 font-bold text-xl px-2 italic">
+      <h1 className=" mt-6 mb-1 font-bold text-2xl px-2 italic">
         Vem blev fullast?
       </h1>
-      <ResultsTable className="mb-4" room={room} />
+      <ResultsTable className="my-4" room={room} />
       <button
         className="mt-0 bg-primary text-secondary p-2 rounded-xl font-bold w-36 hover:w-40 hover:bg-primaryLight hover:text-secondaryLight transition-all"
         onClick={() => {

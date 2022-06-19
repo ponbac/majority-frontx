@@ -43,7 +43,6 @@ const Game = (props: GameProps) => {
 
   const dispatch = useAppDispatch();
 
-  // TODO: Add fade when prevScene != currentScene
   const [prevScene, setPrevScene] = useState<number>();
   const SceneHandler = () => {
     switch (room?.scene) {
@@ -103,7 +102,7 @@ const Game = (props: GameProps) => {
   if (room) {
     return (
       <FadeInDiv className=" font-novaMono" duration={0.5}>
-        <div className="flex flex-col flex-0 justify-center items-center pt-20">
+        <div className="flex flex-col flex-0 justify-center items-center">
           {prevScene == room.scene && <SceneHandler />}
           {prevScene != room.scene && (
             <FadeInDiv className="flex flex-col flex-0 justify-center items-center">
@@ -118,7 +117,7 @@ const Game = (props: GameProps) => {
   if (readyState === ReadyState.CLOSED) {
     return (
       <FadeInDiv className=" font-novaMono" duration={0.5}>
-        <div className="flex flex-col flex-0 justify-center items-center pt-20">
+        <div className="flex flex-col flex-0 justify-center items-center">
           <p className="font-bold text-3xl px-2 text-center">
             Hittar inte rummet [{roomId}], eller så är ditt namn redan taget!
           </p>
@@ -136,7 +135,7 @@ const Game = (props: GameProps) => {
   }
 
   return (
-    <div className="mt-24 flex justify-center items-center">
+    <div className="flex justify-center items-center">
       <div className="loading-indicator">
         <div></div>
         <div></div>
