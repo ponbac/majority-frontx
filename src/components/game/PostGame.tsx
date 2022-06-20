@@ -17,7 +17,7 @@ const PostGame = (props: PostGameProps) => {
       </h1>
       <ResultsTable className="my-4" room={room} />
       <button
-        className="mt-0 bg-primary text-secondary p-2 rounded-xl font-bold w-36 hover:w-40 hover:bg-primaryLight hover:text-secondaryLight transition-all"
+        className="shadow-sm shadow-black mt-0 bg-primary text-secondary p-2 rounded-xl font-bold w-36 hover:w-40 hover:bg-primaryLight hover:text-secondaryLight transition-all"
         onClick={() => {
           dispatch(exitGame());
         }}

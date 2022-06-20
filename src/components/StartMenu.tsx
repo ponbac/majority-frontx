@@ -34,7 +34,7 @@ const StartMenu = (props: StartMenuProps) => {
           <input
             autoFocus
             type="text"
-            className="px-2 py-2 w-full outline-none text-secondary font-bold border-2 border-primary rounded"
+            className="shadow-sm shadow-black px-2 py-2 w-full outline-none text-secondary font-bold border-2 border-primary rounded"
             value={name}
             onChange={(event) => {
               if (event.currentTarget.value.length <= 16) {
@@ -55,7 +55,7 @@ const StartMenu = (props: StartMenuProps) => {
               autoFocus
               type="number"
               min={1}
-              className="px-2 py-2 mb-2 w-24 outline-none text-secondary font-bold border-2 border-primary rounded"
+              className="shadow-sm shadow-black px-2 py-2 mb-2 w-24 outline-none text-secondary font-bold border-2 border-primary rounded"
               value={nQuestions}
               onChange={(event) => {
                 setNQuestions(event.currentTarget.value);
@@ -79,7 +79,7 @@ const StartMenu = (props: StartMenuProps) => {
                 dispatch(startGame());
               }
             }}
-            className="bg-primary text-secondary p-2 rounded-xl font-bold w-32 hover:w-36 hover:bg-primaryLight hover:text-secondaryLight disabled:bg-gray-500 disabled:text-white disabled:w-32 transition-all"
+            className="shadow-sm shadow-black bg-primary text-secondary p-2 rounded-xl font-bold w-32 hover:w-36 hover:bg-primaryLight hover:text-secondaryLight disabled:bg-gray-500 disabled:text-white disabled:w-32 transition-all"
           >
             Starta!
           </button>
@@ -90,7 +90,7 @@ const StartMenu = (props: StartMenuProps) => {
 
   return (
     <div className="flex flex-col justify-center items-center font-novaMono">
-      <div className="flex border-2 border-primary rounded bg-primary text-black w-56">
+      <div className="shadow-sm shadow-black flex border-2 border-primary rounded bg-primary text-black w-56">
         <button className="flex items-center justify-center px-2 border-r border-gray-300">
           <svg
             className="w-6 h-6 text-secondary"
@@ -128,7 +128,7 @@ const StartMenu = (props: StartMenuProps) => {
             setStartAction(StartAction.NEW_GAME);
             setDisplayNameSelect(true);
           }}
-          className="text-lg bg-primary text-secondary p-2 rounded-xl font-bold w-40 hover:w-44 hover:bg-primaryLight hover:text-secondaryLight transition-all"
+          className="shadow-sm shadow-black text-lg bg-primary text-secondary p-2 rounded-xl font-bold w-40 hover:w-44 hover:bg-primaryLight hover:text-secondaryLight transition-all"
         >
           Skapa nytt
         </button>
@@ -140,7 +140,7 @@ const StartMenu = (props: StartMenuProps) => {
               setDisplayNameSelect(true);
             }
           }}
-          className="text-lg bg-primary text-secondary p-2 rounded-xl font-bold w-40 hover:w-44 hover:bg-primaryLight hover:text-secondaryLight disabled:bg-gray-500 disabled:text-white disabled:w-40 transition-all"
+          className="shadow-sm shadow-black text-lg bg-primary text-secondary p-2 rounded-xl font-bold w-40 hover:w-44 hover:bg-primaryLight hover:text-secondaryLight disabled:bg-gray-500 disabled:text-white disabled:w-40 transition-all"
         >
           Anslut
         </button>

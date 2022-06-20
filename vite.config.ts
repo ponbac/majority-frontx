@@ -16,7 +16,7 @@ export default defineConfig({
       ],
       manifest: {
         name: "[Smälta in]",
-        short_name: "[Smälta]",
+        short_name: "[Smälta in]",
         description: "Drickspel, majoriteten vinner.",
         theme_color: "#8326f5",
         icons: [

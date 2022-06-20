@@ -15,7 +15,7 @@ const VoteButtons = (props: VoteButtonsProps) => {
 
   const Button = (props: { text: string; value: number }) => (
     <button
-      className="text-lg font-bold bg-primary disabled:bg-gray-500 text-secondary disabled:text-white w-40 p-2 rounded-xl hover:w-44 hover:bg-primaryLight hover:text-secondaryLight transition-all"
+      className="shadow-sm shadow-black text-lg font-bold bg-primary disabled:bg-gray-500 text-secondary disabled:text-white w-44 p-2 rounded-xl hover:w-48 hover:bg-primaryLight hover:text-secondaryLight transition-all"
       disabled={hasAnswered(name ?? "", question)}
       onClick={() => {
         sendMessage(JSON.stringify({ action: "Vote", value: props.value }));
@@ -26,7 +26,7 @@ const VoteButtons = (props: VoteButtonsProps) => {
   );
 
   return (
-    <div className="w-44 sm:w-full space-y-4 sm:space-y-0 sm:space-x-6 px-3 flex flex-col items-center sm:flex-row">
+    <div className="w-48 sm:w-full space-y-4 sm:space-y-0 sm:space-x-6 px-3 flex flex-col items-center sm:flex-row">
       <Button text={question.choices[0]} value={1} />
       <Button text={question.choices[1]} value={2} />
     </div>
@@ -42,7 +42,7 @@ const Question = (props: QuestionProps) => {
 
   return (
     <div className="flex flex-col items-center justify-center gap-2 mt-2">
-      <p className="text-4xl text-center px-4 font-bold">{question.description}</p>
+      <p className="drop-shadow-2xl shadow-black text-4xl text-center px-4 font-bold">{question.description}</p>
       <div className="flex flex-row gap-12 pt-2">
         <VoteButtons question={question} sendMessage={sendMessage} />
       </div>
