@@ -43,7 +43,10 @@ const App: FC<{}> = () => {
       <div className="flex flex-col flex-0 justify-center items-center min-h-screen">
         {!inGame && (
           <>
-            <p className="drop-shadow-2xl shadow-black mb-2 font-novaMono text-8xl lg:text-8xl font-bold text-center px-2">
+            <p
+              className="mb-2 font-novaMono text-8xl lg:text-8xl font-bold text-center px-2"
+              style={{ textShadow: "2px 2px black" }}
+            >
               SMÄLTA IN
             </p>
             <StartMenu
