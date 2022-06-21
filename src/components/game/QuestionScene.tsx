@@ -48,7 +48,7 @@ const Question = (props: QuestionProps) => {
       >
         {question.description}
       </p>
-      <div className="flex flex-row gap-12 pt-2">
+      <div className="flex flex-row gap-12 pt-4">
         <VoteButtons question={question} sendMessage={sendMessage} />
       </div>
     </div>
