@@ -68,10 +68,10 @@ const ResultScene = (props: ResultSceneProps) => {
   if (losingChoice() == -1) {
     return (
       <>
-        <p className="font-bold text-xl text-center italic mb-4">
+        <p className="font-bold text-xl text-center italic mb-4 mx-4">
           {question.description}
         </p>
-        <p className="font-bold text-5xl text-center italic">Oavgjort!</p>
+        <p className="font-bold text-5xl text-center italic" style={{ textShadow: "1px 1px black" }}>Oavgjort!</p>
         <p className="mt-5 font-bold text-4xl text-center px-2">
           Alla dricker {question.reward / 2} klunk(ar)!
         </p>
@@ -82,10 +82,10 @@ const ResultScene = (props: ResultSceneProps) => {
 
   return (
     <>
-      <p className="font-bold text-xl text-center italic">
+      <p className="font-bold text-xl text-center italic mx-4">
         {question.description}
       </p>
-      <p className="font-bold text-4xl text-center mb-4 mt-1 text-green-600">
+      <p className="font-bold text-4xl text-center mb-4 mt-1 text-green-600" style={{ textShadow: "1px 1px black" }}>
         {losingChoice() == 1 ? question.choices[1] : question.choices[0]}
       </p>
       <p className="font-bold text-2xl text-center">Förlorare:</p>
@@ -94,13 +94,14 @@ const ResultScene = (props: ResultSceneProps) => {
       </p>
       {losingPlayers().length > 0 && (
         <>
-          <p className="font-bold text-2xl text-center mt-4">
+          <p className="font-bold text-3xl text-center mt-4" style={{ textShadow: "1px 1px black" }}>
             Drick {question.reward} klunkar:
           </p>
           {losingPlayers().map((player) => {
             return (
               <p
                 className="font-bold text-2xl text-center italic"
+                style={{ textShadow: "1px 1px black" }}
                 key={player.name}
               >
                 {player.name}
@@ -111,7 +112,7 @@ const ResultScene = (props: ResultSceneProps) => {
       )}
       {losingPlayers().length == 0 && (
         <>
-          <p className="mt-4 font-bold text-5xl text-center px-2">
+          <p className="mt-4 font-bold text-5xl text-center px-2" style={{ textShadow: "1px 1px black" }}>
             Överens, ingen dricker!
           </p>
         </>

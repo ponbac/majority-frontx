@@ -13,7 +13,10 @@ const PreGame = (props: PreGameProps) => {
 
   return (
     <>
-      <p className="text-center text-4xl">
+      <p
+        className="text-center text-5xl"
+        style={{ textShadow: "1px 1px black" }}
+      >
         Rumskod: <span className="font-bold">{room.id}</span>
       </p>
       <p className="font-bold">Väntar på att spelet ska startas...</p>

@@ -11,7 +11,7 @@ const PostGame = (props: PostGameProps) => {
 
   return (
     <div className="text-center">
-      <h1 className="font-bold text-4xl px-2">Spelet är slut!</h1>
+      <h1 className="font-bold text-4xl px-2" style={{ textShadow: "2px 2px black" }}>Spelet är slut!</h1>
       <h1 className=" mt-6 mb-1 font-bold text-2xl px-2 italic">
         Vem blev fullast?
       </h1>
