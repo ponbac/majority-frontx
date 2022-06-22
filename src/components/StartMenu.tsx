@@ -27,7 +27,7 @@ const StartMenu = (props: StartMenuProps) => {
   const [displayNameSelect, setDisplayNameSelect] = useState(false);
   const dispatch = useAppDispatch();
 
-  if (displayNameSelect) {
+  if (displayNameSelect && startAction !== undefined) {
     return (
       <div className="flex flex-col justify-center items-center font-novaMono">
         <div className="flex flex-col gap-2 items-center">
@@ -102,7 +102,6 @@ const StartMenu = (props: StartMenuProps) => {
           </svg>
         </button>
         <input
-          autoFocus
           type="text"
           className="px-4 py-2 w-full outline-none text-secondary font-bold"
           value={roomId}

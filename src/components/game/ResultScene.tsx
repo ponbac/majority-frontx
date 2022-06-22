@@ -89,7 +89,7 @@ const ResultScene = (props: ResultSceneProps) => {
         {losingChoice() == 1 ? question.choices[1] : question.choices[0]}
       </p>
       <p className="font-bold text-2xl text-center">Förlorare:</p>
-      <p className="font-bold text-3xl text-center underline decoration-red-500 text-red-700">
+      <p className="font-bold text-3xl text-center underline decoration-red-700 text-red-700" style={{ textShadow: "1px 1px black" }}>
         {question.choices[losingChoice() - 1]}
       </p>
       {losingPlayers().length > 0 && (
